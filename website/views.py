@@ -8,7 +8,7 @@ my_view = Blueprint("my_view", __name__)
 def home():
     todo_list = Todo.query.all()
     message = request.args.get('message', None)
-    return render_template("index.html",todo_list=todo_list, message=message)
+    return render_template("page1.html",todo_list=todo_list, message=message)
 
 @my_view.route("/add", methods=["POST"])
 def add():
