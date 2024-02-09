@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<details>
+    <summary> Expand to add a task</summary>
+    <hr>
+    <form action="/add" method="post">
+        <div>
+            <label>Enter Your Task To Complete:</label>
+            <input type="text" name="task" placeholder="Enter a Task">
+            <button type="submit">Add a Task</button>
+        </div>
+    </form>
+</details>
+<hr>
+
+{% for todo in todo_list %}
+
+<div class="task">
+    <div class="task-id">{{todo.id}}</div>
+    <div class="button-holder">
+        <p>{{ todo.task }}</p>
+        {% if todo.complete==False %}
+        <p>Task Incomplete. <a href="/update/{{ todo.id }}">Mark as complete?</a></p>
+        {% else %}
+        <p>Task Complete</p>
+        {% endif %}
+    </div>
+    <div class="stacked"><a class="button-like" href="/edit/{{ todo.id }}">Edit Task</a> <a class="button-like"
+            href="/delete/{{ todo.id }}">Delete Task</a></div>
+</div>
+
+{% endfor %}
+
+{% endblock%}
